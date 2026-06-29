@@ -16,6 +16,7 @@
     "type-check:ai": "tsc --noEmit 2>&1",
     "ai-check": "bun run format && bun run lint:ai && bun run type-check:ai",
     "db:generate": "drizzle-kit generate",
+    "test": "vitest run",
     "db:migrate:local": "bunx wrangler d1 migrations apply hono-to-go-lesson --local",
     "db:migrate:remote": "bunx wrangler d1 migrations apply hono-to-go-lesson --remote"
   },
@@ -27,10 +28,12 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
+    "@cloudflare/vitest-pool-workers": "^0.16.20",
     "@tsconfig/strictest": "^2.0.8",
     "@types/bun": "^1.3.14",
     "@types/node": "^25.9.4",
     "drizzle-kit": "^0.31.10",
+    "vitest": "^4.1.9",
     "wrangler": "^4.105.0"
   }
 }

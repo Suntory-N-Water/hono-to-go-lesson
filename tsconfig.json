@@ -22,6 +22,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["node", "bun-types", "./worker-configuration.d.ts"]
-  }
+    "types": [
+      "node",
+      "bun-types",
+      "@cloudflare/vitest-pool-workers/types",
+      "./worker-configuration.d.ts"
+    ]
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts", "worker-configuration.d.ts"]
 }
