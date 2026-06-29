@@ -7,5 +7,12 @@
   "upload_source_maps": true,
   "observability": {
     "enabled": true
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "hono_to_go_lesson",
+      "database_name": "hono-to-go-lesson",
+      "database_id": "68e3a0b3-b737-4f60-a2e8-404f5d9718e7"
+    }
+  ]
 }

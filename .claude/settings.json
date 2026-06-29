@@ -55,15 +55,7 @@
       "Write(.dev.vars)",
       "NotebookEdit"
     ],
-    "ask": [
-      "Bash(git push:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git checkout:*)",
-      "Bash(git switch:*)",
-      "Bash(rm:*)",
-      "Bash(curl:*)"
-    ]
+    "ask": ["Bash(rm:*)"]
   },
   "plansDirectory": ".claude/plans",
   "autoMemoryEnabled": false
