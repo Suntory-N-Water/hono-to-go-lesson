@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "cloudflare-workers-template",
+      "name": "hono-to-go-lesson",
       "dependencies": {
         "@hono/standard-validator": "^0.2.2",
         "drizzle-orm": "^0.45.2",

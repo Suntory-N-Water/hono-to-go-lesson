@@ -1,5 +1,5 @@
 {
-  "name": "cloudflare-workers-template",
+  "name": "hono-to-go-lesson",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -16,8 +16,8 @@
     "type-check:ai": "tsc --noEmit 2>&1",
     "ai-check": "bun run format && bun run lint:ai && bun run type-check:ai",
     "db:generate": "drizzle-kit generate",
-    "db:migrate:local": "bunx wrangler d1 migrations apply cloudflare-workers-template --local",
-    "db:migrate:remote": "bunx wrangler d1 migrations apply cloudflare-workers-template --remote"
+    "db:migrate:local": "bunx wrangler d1 migrations apply hono-to-go-lesson --local",
+    "db:migrate:remote": "bunx wrangler d1 migrations apply hono-to-go-lesson --remote"
   },
   "dependencies": {
     "@hono/standard-validator": "^0.2.2",
