@@ -18,8 +18,18 @@ func main() {
 	//  - スコープが広がる = 名前も伸ばす — パッケージレベルの公開関数の引数は userID, request のように普通の長さに
 	// * は ポインタ を意味するらしい。ようわからん
 	mux.HandleFunc("GET /hello", func(w http.ResponseWriter, r *http.Request) {
+		// TypeScript 風に書くと new TextEncoder().encode("hello") 相当。文字列を生のバイト列に変換しているだけ。
 		w.Write([]byte("hello"))
 	})
 
+	// // Node.js でいう
+	//  try {
+	//    await server.listen(8080)
+	//  } catch (e) {
+	//    console.error(e)
+	//    process.exit(1)
+	//  }
+	//  を 1 行に圧縮したもの。Go には例外が無いので、戻り値の error を握りつぶさず必ず処理する法則
+	//  その「最終行で握る」最短形がこれです。
 	log.Fatal(http.ListenAndServe(":8080", mux))
 }
