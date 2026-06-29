@@ -12,7 +12,8 @@
     {
       "binding": "hono_to_go_lesson",
       "database_name": "hono-to-go-lesson",
-      "database_id": "68e3a0b3-b737-4f60-a2e8-404f5d9718e7"
+      "database_id": "68e3a0b3-b737-4f60-a2e8-404f5d9718e7",
+      "migrations_dir": "drizzle/migrations"
     }
   ]
 }
