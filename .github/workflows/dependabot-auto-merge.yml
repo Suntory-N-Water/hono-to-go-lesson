@@ -1,0 +1,47 @@
+name: Dependabot 自動マージ
+on: pull_request
+
+permissions: {}
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+    if: github.event.pull_request.user.id == '49699333' # dependabot[bot]
+    steps:
+      - name: メタデータ取得
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+
+      - name: CI チェック完了を待機
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          until
+            CHECKS=$(gh pr view "$PR_URL" --json statusCheckRollup \
+              --jq '.statusCheckRollup | map(select(.workflowName != "Dependabot 自動マージ"))')
+            TOTAL=$(echo "$CHECKS" | jq 'length')
+            PENDING=$(echo "$CHECKS" | jq '[.[] | select(.status != "COMPLETED")] | length')
+            FAILED=$(echo "$CHECKS" | jq '[.[] | select(.status == "COMPLETED") |
+              select(.conclusion | . == "FAILURE" or . == "ERROR" or . == "CANCELLED" or . == "TIMED_OUT")] | length')
+            [ "$FAILED" -gt 0 ] && { echo "チェックが失敗しました"; exit 1; }
+            [ "$TOTAL" -gt 0 ] && [ "$PENDING" -eq 0 ]
+          do
+            sleep 30
+          done
+
+      - name: patch/minor を自動マージ
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge --squash "$PR_URL"

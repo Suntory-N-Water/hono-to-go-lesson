@@ -1,0 +1,3 @@
+[install]
+# リリースから1日未満のバージョンをインストールしない
+minimumReleaseAge = 86400
