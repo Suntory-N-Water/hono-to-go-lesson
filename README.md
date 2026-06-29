@@ -1,3 +1,3 @@
-# Cloudflare Workers Template
+# hono-to-go-lesson
 
-Cloudflare Workers と Hono を使うための最小構成テンプレートです。
+Go 言語を学習用のリポジトリ
